@@ -11,6 +11,14 @@ function heal(p1: IPlayer, p2: IPlayer, heal: number) {
   p1.heal(p2, heal);
 }
 
+function fullyHealPlayer(p: IPlayer) {
+  p.health = 1000;
+}
+
+function levelUp(p: IPlayer, level: number) {
+  p.level = level;
+}
+
 describe("Basic functionallity", () => {
 
   let player1: IPlayer;
@@ -49,6 +57,7 @@ describe("Basic functionallity", () => {
 
 });
 
+
 describe("Advanced functionallity", () => {
 
   let player1: IPlayer;
@@ -72,8 +81,8 @@ describe("Advanced functionallity", () => {
   });
 
   it("should reduce damage in 50% due to high level", () => {
-    player2.health = 1000;
-    player2.level = 6;
+    fullyHealPlayer(player2)
+    levelUp(player2, 6);
     attack(player1, player2, 100);
     expect(player2.health).to.equal(950);
   });
